@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_rainbow_dye": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          { "items": "rainbowdye:rainbow_dye" }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rainbowtrim:rainbow_trim_upgrade"
+      }
+    }
+  },
+  "requirements": [
+    ["has_rainbow_dye", "has_the_recipe"]
+  ],
+  "rewards": {
+    "recipes": ["rainbowtrim:rainbow_trim_upgrade"]
+  }
+}

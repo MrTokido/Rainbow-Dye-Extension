@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "rainbowtrim:item/rainbow_trim_upgrade"
+  }
+}

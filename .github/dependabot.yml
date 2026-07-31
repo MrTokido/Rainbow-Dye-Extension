@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: "ci"
+    labels:
+      - dependencies
+
+  - package-ecosystem: gradle
+    directory: "/"
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: "deps"
+    labels:
+      - dependencies
+    # Loom/Yarn/loader versions are pinned in gradle.properties and must be bumped
+    # together by hand against fabricmc.net/develop, so don't let bots touch them.
+    ignore:
+      - dependency-name: "net.fabricmc:yarn"
+      - dependency-name: "net.fabricmc:fabric-loader"
+      - dependency-name: "net.fabricmc.fabric-api:fabric-api"
+      - dependency-name: "com.mojang:minecraft"

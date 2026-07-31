@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " T ",
+    "IDI",
+    " I "
+  ],
+  "key": {
+    "T": "minecraft:netherite_upgrade_smithing_template",
+    "I": "minecraft:netherite_ingot",
+    "D": "rainbowdye:rainbow_dye"
+  },
+  "result": {
+    "id": "rainbowtrim:rainbow_trim_upgrade",
+    "count": 1,
+    "components": {
+      "minecraft:provides_trim_material": "rainbowtrim:rainbow"
+    }
+  }
+}

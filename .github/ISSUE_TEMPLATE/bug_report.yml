@@ -1,0 +1,64 @@
+name: Bug report
+description: Something is broken in game
+labels: ["bug"]
+body:
+  - type: input
+    id: mc
+    attributes:
+      label: Minecraft version
+      placeholder: "1.21.4"
+    validations:
+      required: true
+
+  - type: input
+    id: loader
+    attributes:
+      label: Fabric Loader version
+      placeholder: "0.16.9"
+    validations:
+      required: true
+
+  - type: input
+    id: modver
+    attributes:
+      label: Rainbow Dye version
+      placeholder: "1.0.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: side
+    attributes:
+      label: Where did it happen?
+      options:
+        - Singleplayer
+        - Multiplayer - I run the server
+        - Multiplayer - I don't run the server
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, what you got instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: log
+    attributes:
+      label: Log or crash report
+      description: Paste the log, or link a gist. `latest.log` is far more useful than a screenshot of chat.
+      render: shell
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before you file
+      options:
+        - label: I have Fabric API installed
+          required: true
+        - label: The mod is installed on both client and server (if multiplayer)
+          required: true
+        - label: I checked whether it still happens with only Fabric API and this mod

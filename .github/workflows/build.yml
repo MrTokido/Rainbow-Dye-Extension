@@ -1,0 +1,58 @@
+name: Build
+
+# Fires on every push and PR, on any branch, no path filters -
+# so a run always appears in the Actions tab and there is never
+# a "why didn't it trigger" mystery. Manual button included.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+          cache: gradle
+
+      - name: Make wrapper executable
+        run: chmod +x gradlew
+
+      - name: Show versions
+        run: ./gradlew --version
+
+      - name: Build
+        run: ./gradlew build --stacktrace --no-daemon
+
+      - name: Dump trim API signatures (diagnostics)
+        if: always()
+        run: |
+          JAR=$(find ~/.gradle/caches/fabric-loom -name "*.jar" 2>/dev/null | grep -iE "minecraft" | grep -vE "sources|javadoc" | head -1)
+          if [ -n "$JAR" ]; then
+            echo "===== DataComponents (trim) ====="
+            javap -p -classpath "$JAR" net.minecraft.core.component.DataComponents 2>&1 | grep -i trim || true
+            echo "===== Registries (trim) ====="
+            javap -p -classpath "$JAR" net.minecraft.core.registries.Registries 2>&1 | grep -i trim || true
+          fi
+
+      - name: Upload jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: rainbow-trim
+          path: |
+            build/libs/*.jar
+            !build/libs/*-sources.jar
+          if-no-files-found: error
+          retention-days: 30

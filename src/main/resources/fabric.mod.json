@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "rainbowtrim",
+  "version": "${version}",
+  "name": "Rainbow Trim",
+  "description": "Adds the Rainbow Trim Upgrade, a smithing ingredient crafted from a Netherite Upgrade, netherite ingots and a Rainbow Dye. Use it in a smithing table like any other trim material to give armour a rainbow trim that animates smoothly through the whole spectrum. Requires Rainbow Dye.",
+  "authors": ["Tokido"],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/rainbowtrim/textures/item/rainbow_trim_upgrade.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.tokido.rainbowtrim.RainbowTrim"]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "~26.2",
+    "java": ">=25",
+    "fabric-api": "*",
+    "rainbowdye": ">=1.6.0"
+  }
+}
