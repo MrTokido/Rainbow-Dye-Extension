@@ -12,6 +12,26 @@
         "minecraft:trims/items/leggings_trim",
         "minecraft:trims/items/boots_trim"
       ]
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "rainbowtrim:trims/items/helmet_trim_rainbow",
+      "sprite": "minecraft:trims/items/helmet_trim_rainbow"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "rainbowtrim:trims/items/chestplate_trim_rainbow",
+      "sprite": "minecraft:trims/items/chestplate_trim_rainbow"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "rainbowtrim:trims/items/leggings_trim_rainbow",
+      "sprite": "minecraft:trims/items/leggings_trim_rainbow"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "rainbowtrim:trims/items/boots_trim_rainbow",
+      "sprite": "minecraft:trims/items/boots_trim_rainbow"
     }
   ]
 }

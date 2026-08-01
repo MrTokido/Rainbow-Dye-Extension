@@ -38,12 +38,10 @@ so as far as the game is concerned they simply *are* the rainbow trim.
 
 - **Worn armour** — 36 sprites (18 patterns × humanoid + leggings), declared in
   `assets/minecraft/atlases/armor_trims.json`.
-- **Item icons** — *not* animated, and deliberately so. `assets/minecraft/atlases/items.json`
-  adds a `rainbow` permutation to vanilla's own item-trim source, so the four icon sprites
-  are generated from an 8-colour palette at load. That's one 8×1 PNG instead of four
-  animated sheets, and the icon still reads as a rainbow because the palette spreads the
-  spectrum across the trim's shading levels. Note this is a **separate** atlas from the
-  worn trims.
+- **Item icons** — 4 sprites (helmet/chestplate/leggings/boots), declared in
+  `assets/minecraft/atlases/items.json`. This is a **separate** atlas from the worn trims;
+  miss it and the inventory icons stay uncoloured while the worn armour looks fine. The
+  palette permutation is kept underneath as a static fallback.
 
 ### Item icons need a model too, not just a sprite
 
@@ -79,8 +77,10 @@ The worn trim now takes its hue from **time alone** — every pixel of every fac
 piece is the same hue on the same frame, so a full set always matches. Brightness and
 saturation still come from the greyscale, so it keeps its shading and doesn't look flat.
 
-Item icons are static — a rainbow gradient straight from the palette, no animation and no
-texture files of their own.
+Item icons keep a real top-to-bottom rainbow gradient: a single flat sprite has no body
+parts to fall out of step, so a gradient is safe there and reads better in an inventory
+slot. Icons and worn armour share the same 16-frame / 6-tick timeline, so they advance
+together.
 
 No mixins. No client code. No renderer hooks. The only Java in the mod is one item
 registration.
@@ -137,6 +137,7 @@ Roughly 143 files, and it breaks down like this:
 |---|---|---|
 | worn-armour animation | 72 | 18 patterns × 2 layers, each a PNG + `.mcmeta` |
 | icon plumbing | 59 | 29 item definitions + 30 models |
+| icon animation | 8 | 4 slots, each a PNG + `.mcmeta` |
 | everything else | ~12 | item texture, palette, atlases, recipe, tag, lang, trim material |
 
 Both big groups are load-bearing. The 72 are the animation itself. The 59 are what make
